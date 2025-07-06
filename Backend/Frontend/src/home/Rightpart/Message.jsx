@@ -32,6 +32,9 @@ function Message({ message }) {
         <div className="text-xs text-right text-gray-500 mt-1 flex items-center justify-end gap-1">
           {formattedTime}
           {TickIcon}
+          <span className="ml-2 text-[10px] text-gray-400">
+            {message.language?.toUpperCase()}
+          </span>
         </div>
       </div>
     </div>

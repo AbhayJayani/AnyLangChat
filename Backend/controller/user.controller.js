@@ -79,3 +79,19 @@ export const allUsers = async (req, res) => {
     console.log("Error in allUsers Controller: " + error);
   }
 };
+
+export const updateLanguage = async (req, res) => {
+  try {
+    const { language } = req.body;
+    const userId = req.user._id;
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { preferredLanguage: language },
+      { new: true }
+    ).select("-password");
+    res.status(200).json(user);
+  } catch (error) {
+    console.log("Error updating language:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

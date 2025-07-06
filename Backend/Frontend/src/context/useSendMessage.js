@@ -4,12 +4,13 @@ import axios from "axios";
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessage, selectedConversation } = useConversation();
-  const sendMessages = async (message) => {
+  // Accepts an object: { message, language }
+  const sendMessages = async ({ message, language }) => {
     setLoading(true);
     try {
       const res = await axios.post(
         `/api/message/send/${selectedConversation._id}`,
-        { message }
+        { message, language }
       );
       setMessage([...messages, res.data]);
       setLoading(false);

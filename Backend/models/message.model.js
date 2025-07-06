@@ -12,14 +12,12 @@ const messageSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    message: {
-      type: String,
-      required: true,
-    },
+    originalMessage: { type: String, required: true },
+    originalLanguage: { type: String, default: "en" },
   },
   { timestamps: true }
 );
 
-const Message = mongoose.model("message", messageSchema);
+const Message = mongoose.model("Message", messageSchema);
 
 export default Message;
